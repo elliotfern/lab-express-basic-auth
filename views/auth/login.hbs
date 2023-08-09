@@ -1,0 +1,47 @@
+<div class="container">
+
+  <h3>Formulario de acceso de usuarios registrados en la web</h3>
+  {{#if isUserActive}}
+    <div class="alert alert-light" role="alert">
+      Ya eres un usuario registrado!
+      <p><a href="/user/">Accede a tu perfil aquí</a></p>
+    </div>
+  {{else}}
+    <div class="alert alert-light" role="alert">
+      Introduce en este formulario tus datos para poder acceder a tu perfil
+      privado
+    </div>
+
+    <form action="/auth/login" method="post">
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="text"
+          name="email"
+          class="form-control"
+          value="{{this.previousEmail}}"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          value="{{this.previousPassword}}"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Registro</button>
+
+    </form>
+    {{#if this.errorMessage}}
+      <div class="alert alert-danger" role="alert">
+        {{this.errorMessage}}
+      </div>
+    {{/if}}
+  {{/if}}
+
+</div>

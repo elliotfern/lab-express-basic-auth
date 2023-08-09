@@ -1,0 +1,58 @@
+<div class="container">
+
+  <h3>Formulario de registro en la web</h3>
+
+  {{#if isUserActive}}
+    <div class="alert alert-light" role="alert">
+      Ya eres un usuario registrado!
+      <p><a href="/user/">Accede a tu perfil aquí</a></p>
+    </div>
+  {{else}}
+    <div class="alert alert-light" role="alert">
+      Introduce tus datos para registrarte en la web
+    </div>
+
+    <form action="/auth/signup" method="post">
+
+      <div class="mb-3">
+        <label for="username" class="form-label">Nombre de Usuario</label>
+        <input
+          type="type"
+          class="form-control"
+          id="username"
+          name="username"
+          value="{{this.previousUsername}}"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo electrónico</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          value="{{this.previousEmail}}"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          value="{{this.previousPassword}}"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Registro</button>
+    </form>
+    {{#if this.errorMessage}}
+      <div class="alert alert-danger" role="alert">
+        {{this.errorMessage}}
+      </div>
+    {{/if}}
+  {{/if}}
+</div>
